@@ -4,6 +4,12 @@
     "parameters": {
         "location": {
             "value": "japaneast"
+        },
+        "principalId": {
+            "value": "Your aad account object id"
+        },
+        "grafanaViewerRoleId": {
+            "value": "grafana viewer role definition id"
         }
     }
 }
