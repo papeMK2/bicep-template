@@ -18,6 +18,7 @@ resource appInsights 'Microsoft.Insights/components@2020-02-02' = {
     Application_Type: 'web'
     Flow_Type: 'Bluefield'
     WorkspaceResourceId: workspace.id
+    Request_Source: 'rest'
   }
 }
 
@@ -42,8 +43,16 @@ resource app 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       appSettings: [
         {
-          name: 'ApplicationInsights:ConnectionString'
+          name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
           value: appInsights.properties.ConnectionString
+        }
+        {
+          name: 'ApplicationInsightsAgent_EXTENSION_VERSION'
+          value: '~2'
+        }
+        {
+          name: 'XDT_MicrosoftApplicationInsights_Mode'
+          value: 'recommended'
         }
       ]
     }
