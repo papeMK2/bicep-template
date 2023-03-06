@@ -43,6 +43,7 @@ resource app 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       appSettings: [
         {
+
           name: 'APPLICATIONINSIGHTS_CONNECTION_STRING'
           value: appInsights.properties.ConnectionString
         }
@@ -53,6 +54,28 @@ resource app 'Microsoft.Web/sites@2022-03-01' = {
         {
           name: 'XDT_MicrosoftApplicationInsights_Mode'
           value: 'recommended'
+        }
+        {
+          // enable visual studio's snapshot debugger site extension feature.
+          name: 'SnapshotDebugger_EXTENSION_VERSION'
+          value: '~1'
+        }
+        {
+          // enable snapshot debugger
+          name: 'APPINSIGHTS_SNAPSHOTFEATURE_VERSION'
+          value: '1.0.0'
+        }
+        {
+          // enable application insights profiler
+          name: 'DiagnosticServices_EXTENSION_VERSION'
+          value: '~3'
+        }
+        {
+          // enable binary-rewrite engine
+          // if you want to show local variables for your application when an exception is thrown, 
+          // DiagnosticServices_EXTENSION_VERSION and this are need.
+          name: 'InstrumentationEngine_EXTENSION_VERSION'
+          value: '~1'
         }
       ]
     }
